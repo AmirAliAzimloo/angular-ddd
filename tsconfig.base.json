@@ -14,7 +14,19 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-ddd/application": [
+        "libs/app-web/core/application/src/index.ts"
+      ],
+      "@angular-ddd/domain": ["libs/app-web/core/domain/src/index.ts"],
+      "@angular-ddd/infrastructure": [
+        "libs/app-web/core/infrastructure/src/index.ts"
+      ],
+      "@angular-ddd/persistence": [
+        "libs/app-web/core/persistence/src/index.ts"
+      ],
+      "@angular-ddd/ui-services": ["libs/app-web/ui-services/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
