@@ -31,6 +31,30 @@ To see all available targets to run for a project, run:
 npx nx show project angular-ddd
 ```
 
+To create a page:
+
+```sh
+npx nx g @nx/angular:component apps/angular-ddd/src/app/pages/home/home
+```
+
+To create a lib:
+
+```sh
+npx nx generate @nx/angular:library libs/ui-core --buildable
+```
+
+To create a lib with tailwind config:
+
+```sh
+npx nx generate @nx/angular:library libs/ui-core --buildable --add-tailwind
+```
+
+To setup tailwind in an app:
+
+```sh
+npx nx generate @nx/angular:setup-tailwind angular-ddd                 
+```
+
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
 [More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
