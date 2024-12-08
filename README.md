@@ -16,19 +16,19 @@
 To run the dev server for your app, use:
 
 ```sh
-npx nx serve angular-ddd
+npx nx serve app-web
 ```
 
 To create a production bundle:
 
 ```sh
-npx nx build angular-ddd
+npx nx build app-web
 ```
 
 To see all available targets to run for a project, run:
 
 ```sh
-npx nx show project angular-ddd
+npx nx show project app-web
 ```
 
 To create a app:
@@ -37,10 +37,16 @@ To create a app:
 npx nx g @nx/angular:application apps/app-web
 ```
 
+To remove a app:
+
+```sh
+npx nx g @nx/angular:application apps/app-web
+```
+
 To create a page:
 
 ```sh
-npx nx g @nx/angular:component apps/angular-ddd/src/app/pages/home/home
+npx nx g @nx/angular:component apps/app-web/src/app/pages/home/home
 ```
 
 To create a lib:
@@ -58,7 +64,7 @@ npx nx generate @nx/angular:library libs/ui-core --buildable --add-tailwind
 To setup tailwind in an app:
 
 ```sh
-npx nx generate @nx/angular:setup-tailwind angular-ddd                 
+npx nx generate @nx/angular:setup-tailwind app-web                 
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
