@@ -31,6 +31,12 @@ To see all available targets to run for a project, run:
 npx nx show project angular-ddd
 ```
 
+To create a app:
+
+```sh
+npx nx g @nx/angular:application apps/app-web
+```
+
 To create a page:
 
 ```sh
