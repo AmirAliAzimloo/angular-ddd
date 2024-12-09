@@ -1,8 +1,9 @@
 export default {
-  displayName: 'persistence',
+  displayName: 'infrastructure',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/app-web/core/persistence',
+  coverageDirectory:
+    '../../../../coverage/libs/app-web/architecture/infrastructure',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

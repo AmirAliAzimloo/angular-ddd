@@ -16,14 +16,14 @@
     "baseUrl": ".",
     "paths": {
       "@angular-ddd/application": [
-        "libs/app-web/core/application/src/index.ts"
+        "libs/app-web/architecture/application/src/index.ts"
       ],
-      "@angular-ddd/domain": ["libs/app-web/core/domain/src/index.ts"],
+      "@angular-ddd/domain": ["libs/app-web/architecture/domain/src/index.ts"],
       "@angular-ddd/infrastructure": [
-        "libs/app-web/core/infrastructure/src/index.ts"
+        "libs/app-web/architecture/infrastructure/src/index.ts"
       ],
       "@angular-ddd/persistence": [
-        "libs/app-web/core/persistence/src/index.ts"
+        "libs/app-web/architecture/persistence/src/index.ts"
       ],
       "@angular-ddd/ui-services": ["libs/app-web/ui-services/src/index.ts"]
     }
