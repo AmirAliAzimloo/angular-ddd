@@ -1,5 +1,6 @@
 import { AggregateRoot, Identity } from '@angular-ddd/domain-driven-design/common';
-import { PHONE_NUMBER_PATTERN_REGEX } from '@angular-ddd/utils'
+import { PHONE_NUMBER_PATTERN_REGEX } from '@angular-ddd/utils';
+import { UserCreatedEvent,UserUpdatedEvent,UserDeletedEvent } from './events';
 
 export interface IUserAggregateState {
   id: Identity;
@@ -36,10 +37,10 @@ export class UserAggregate extends AggregateRoot<IUserAggregateState> {
 
     const aggregate = new UserAggregate({ id: args.id, state });
 
-    aggregate.addDomainEvent({
-      type: 'UserCreated',
-      payload: { id: args.id.getValue(), username: args.username },
-    });
+    aggregate.addDomainEvent(new UserCreatedEvent(
+      args.id.getValue(),  
+      args.username
+    ));
 
     return aggregate;
   }
@@ -64,19 +65,17 @@ export class UserAggregate extends AggregateRoot<IUserAggregateState> {
       this.setUsername(args.username);
     }
 
-    this.addDomainEvent({
-      type: 'UserUpdated',
-      payload: { id: this.getId().getValue(), username: this.username }
-    });
+    this.addDomainEvent(new UserUpdatedEvent(
+      this.getId().getValue(),
+      this.username
+    ));
   }
 
   delete(): void {
-    this.addDomainEvent({
-      type: 'UserDeleted',
-      payload: { id: this.getId().getValue() }
-    });
+    this.addDomainEvent(new UserDeletedEvent(
+      this.getId().getValue()
+    ));
   }
-
 
   get nationalId(): string {
     return this.state.nationalId;
