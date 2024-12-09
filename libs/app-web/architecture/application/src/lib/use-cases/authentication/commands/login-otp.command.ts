@@ -1,13 +1,31 @@
+import { map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthenticationProvider } from '../../../abstractions/authentication/authentication-provider.abstract';
+import { UserAggregate } from '@angular-ddd/domain';
+
+import { Identity } from '@angular-ddd/domain-driven-design/common';
+import { AuthenticationApiService } from '@angular-ddd/infrastructure';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginOTPCommand {
-  constructor(private authenticationProvider: AuthenticationProvider) {}
+  constructor(
+    private apiService: AuthenticationApiService
+  ) {}
 
-  async execute(): Promise<void> {
-    await this.authenticationProvider.loginOTPRequest();
+  execute(): Observable<any> {
+    return this.apiService.loginOTPRequest().pipe(
+      map(response => {
+        const userAggregate = UserAggregate.create({
+          id: new Identity(response.userId),
+          nationalId: response.nationalId,
+          username: response.username,
+          firstName: response.firstName,
+          lastName: response.lastName,
+        });
+
+        return userAggregate;
+      })
+    );
   }
 }

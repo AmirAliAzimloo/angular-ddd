@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AuthenticationProvider } from '../../../abstractions/authentication/authentication-provider.abstract';
+
+import { AuthenticationApiService } from '@angular-ddd/infrastructure';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VerifyOTPCommand {
-  constructor(private authenticationProvider: AuthenticationProvider) {}
+  constructor(private apiService: AuthenticationApiService) {}
 
   async execute(): Promise<void> {
-    await this.authenticationProvider.verifyOTPRequest();
+    this.apiService.verifyOTPRequest();
   }
 }
