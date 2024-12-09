@@ -1,1 +1,1 @@
-export * from './lib/infrastructure/infrastructure.component';
+export * from './lib/authentication'
