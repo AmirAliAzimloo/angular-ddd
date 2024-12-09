@@ -5,6 +5,7 @@ import { UserAggregate } from '@angular-ddd/domain';
 import { Identity } from '@angular-ddd/domain-driven-design/common';
 import { AuthenticationApiService } from '@angular-ddd/infrastructure';
 import { LocalStorageTokenService } from '@angular-ddd/persistence';
+import { TokenKey } from 'libs/app-web/architecture/persistence/src/lib/configurations/enums/token-key.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { LocalStorageTokenService } from '@angular-ddd/persistence';
 export class LoginOTPCommand {
   constructor(
     private apiService: AuthenticationApiService,
+    private localStorageTokenService: LocalStorageTokenService
   ) {}
 
   execute(): Observable<any> {
@@ -27,7 +29,7 @@ export class LoginOTPCommand {
 
         const token = response.token;
         if (token) {
-          LocalStorageTokenService.saveToken(token);
+          this.localStorageTokenService.save(TokenKey.AuthToken, token);
         }
 
         return userAggregate;

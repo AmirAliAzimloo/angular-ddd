@@ -1,28 +1,29 @@
-export class LocalStorageTokenService {
-  private static readonly TOKEN_KEY = 'auth_token';
+import { StorageService } from '../../../configurations';
+import { TokenKey } from '../../../configurations/enums/token-key.enum';
 
-  static saveToken(token: string): void {
+export class LocalStorageTokenService extends StorageService {
+  save(key: TokenKey, token: string): void {
     try {
-      localStorage.setItem(this.TOKEN_KEY, token);
+      localStorage.setItem(key, token);
     } catch (error) {
-      console.error('Error saving token to localStorage', error);
+      console.error(`Error saving token to localStorage: ${key}`, error);
     }
   }
 
-  static getToken(): string | null {
+  get(key: TokenKey): string | null {
     try {
-      return localStorage.getItem(this.TOKEN_KEY);
+      return localStorage.getItem(key);
     } catch (error) {
-      console.error('Error retrieving token from localStorage', error);
+      console.error(`Error retrieving token from localStorage: ${key}`, error);
       return null;
     }
   }
 
-  static removeToken(): void {
+  remove(key: TokenKey): void {
     try {
-      localStorage.removeItem(this.TOKEN_KEY);
+      localStorage.removeItem(key);
     } catch (error) {
-      console.error('Error removing token from localStorage', error);
+      console.error(`Error removing token from localStorage: ${key}`, error);
     }
   }
 }
