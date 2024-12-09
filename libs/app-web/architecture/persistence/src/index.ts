@@ -1,1 +1,1 @@
-export * from './lib/persistence/persistence.component';
+export * from './lib/data-access';

@@ -4,13 +4,14 @@ import { UserAggregate } from '@angular-ddd/domain';
 
 import { Identity } from '@angular-ddd/domain-driven-design/common';
 import { AuthenticationApiService } from '@angular-ddd/infrastructure';
+import { LocalStorageTokenService } from '@angular-ddd/persistence';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginOTPCommand {
   constructor(
-    private apiService: AuthenticationApiService
+    private apiService: AuthenticationApiService,
   ) {}
 
   execute(): Observable<any> {
@@ -23,6 +24,11 @@ export class LoginOTPCommand {
           firstName: response.firstName,
           lastName: response.lastName,
         });
+
+        const token = response.token;
+        if (token) {
+          LocalStorageTokenService.saveToken(token);
+        }
 
         return userAggregate;
       })
