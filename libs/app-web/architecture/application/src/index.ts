@@ -1,1 +1,1 @@
-export * from './lib/application/application.component';
+export * from './lib/abstractions'
