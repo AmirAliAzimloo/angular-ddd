@@ -2,15 +2,18 @@ import { StorageService } from '../../../configurations';
 import { TokenKey } from '../../../configurations/enums/token-key.enum';
 
 export class LocalStorageTokenService extends StorageService {
-  save(key: TokenKey, token: string): void {
+  saveToken(token: string): void {
     try {
-      localStorage.setItem(key, token);
+      localStorage.setItem(TokenKey.AuthToken, token);
     } catch (error) {
-      console.error(`Error saving token to localStorage: ${key}`, error);
+      console.error(
+        `Error saving token to localStorage: ${TokenKey.AuthToken}`,
+        error
+      );
     }
   }
 
-  get(key: TokenKey): string | null {
+  getToken(key: TokenKey): string | null {
     try {
       return localStorage.getItem(key);
     } catch (error) {
@@ -19,11 +22,23 @@ export class LocalStorageTokenService extends StorageService {
     }
   }
 
-  remove(key: TokenKey): void {
+  removeToken(key: TokenKey): void {
     try {
       localStorage.removeItem(key);
     } catch (error) {
       console.error(`Error removing token from localStorage: ${key}`, error);
     }
+  }
+
+  save(value: string): void {
+    this.saveToken(value);
+  }
+
+  get(key: TokenKey): string | null {
+    return this.getToken(key);
+  }
+
+  remove(key: TokenKey): void {
+    this.removeToken(key);
   }
 }

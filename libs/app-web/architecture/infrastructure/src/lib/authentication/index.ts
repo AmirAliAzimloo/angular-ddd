@@ -9,7 +9,7 @@ export class AuthenticationApiService {
   private apiUrl = '/api/auth';
 
   constructor(
-    private http: HttpClient,
+    private readonly http: HttpClient,
   ) {}
 
   loginOTPRequest(): Observable<any> {
@@ -40,3 +40,31 @@ export class AuthenticationApiService {
     return this.http.get(`${this.apiUrl}/me`);
   }
 }
+
+// 1- Application Calls AuthenticationApiService
+// 2- Application generate domain aggregate with static create method
+// 3- Pass aggregate to Persistence to save into the storage
+
+
+// Command => Insert / delete / update
+// Query => read
+
+// Command => UserCreateCommand => 
+// export class UserCreateCommand {
+
+//   readonly id: string;
+//   readonly name: string;
+
+//   constructor(args: UserCreateCommand) {
+//     Object.assign(this, args);
+//   }
+// }
+
+// export class UserCreateCommandHandler {
+
+
+//   execute(command: UserCreateCommand) {
+   
+//   }
+// }
+
