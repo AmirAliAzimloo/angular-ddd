@@ -13,20 +13,20 @@ export class LocalStorageTokenService extends StorageService {
     }
   }
 
-  getToken(key: TokenKey): string | null {
+  getToken(): string | null {
     try {
-      return localStorage.getItem(key);
+      return localStorage.getItem(TokenKey.AuthToken);
     } catch (error) {
-      console.error(`Error retrieving token from localStorage: ${key}`, error);
+      console.error(`Error retrieving token from localStorage: ${TokenKey.AuthToken}`, error);
       return null;
     }
   }
 
-  removeToken(key: TokenKey): void {
+  removeToken(): void {
     try {
-      localStorage.removeItem(key);
+      localStorage.removeItem(TokenKey.AuthToken);
     } catch (error) {
-      console.error(`Error removing token from localStorage: ${key}`, error);
+      console.error(`Error removing token from localStorage: ${TokenKey.AuthToken}`, error);
     }
   }
 
@@ -34,11 +34,11 @@ export class LocalStorageTokenService extends StorageService {
     this.saveToken(value);
   }
 
-  get(key: TokenKey): string | null {
-    return this.getToken(key);
+  get(): string | null {
+    return this.getToken();
   }
 
-  remove(key: TokenKey): void {
-    this.removeToken(key);
+  remove(): void {
+    this.removeToken();
   }
 }

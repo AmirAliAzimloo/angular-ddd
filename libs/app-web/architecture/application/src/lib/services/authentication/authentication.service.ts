@@ -1,33 +1,46 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { LoginOTPCommand } from '../../use-cases/authentication/commands/login-otp.command';
-import { VerifyOTPCommand } from '../../use-cases/authentication/commands/verify-otp.command';
-import { RemoveAuthTokenCommand } from '../../use-cases/authentication/commands/remove-auth-token.command';
-import { LogoutCommand } from '../../use-cases/authentication/commands/logout.command';
+import { LoginOTPCommand } from '../../use-cases/authentication/commands/login/login-otp.command';
+import { LoginOTPCommandHandler } from '../../use-cases/authentication/commands/login/login-otp.command-handler';
+
+import { LogoutCommand } from '../../use-cases/authentication/commands/logout/logout.command';
+import { LogoutCommandHandler } from '../../use-cases/authentication/commands/logout/logout.command-handler';
+
+
+import { VerifyOTPCommand } from '../../use-cases/authentication/commands/verify/verify-otp.command';
+import { VerifyOTPCommandHandler } from '../../use-cases';
+
+import { RemoveAuthTokenCommand } from '../../use-cases/authentication/commands/remove-auth-token/remove-auth-token.command';
+import { RemoveAuthTokenCommandHandler } from '../../use-cases/authentication/commands/remove-auth-token/remove-auth-token.command-handler';
 
 import { GetRefreshTokenCommand } from '../../use-cases/authentication/queries/get-refresh-token.query';
 import { GetMeCommand } from '../../use-cases/authentication/queries/get-me.query';
-import { AuthenticationProvider } from '../../abstractions';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   constructor(
-    private loginOTPCommand: LoginOTPCommand,
-    private verifyOTPCommand: VerifyOTPCommand,
+    private loginOTPCommandHandler: LoginOTPCommandHandler,
+    private logoutCommandHandler: LogoutCommandHandler,
+    private verifyOTPCommandHandler: VerifyOTPCommandHandler,
+    private removeAuthTokenCommandHandler: RemoveAuthTokenCommandHandler,
     private getRefreshTokenCommand: GetRefreshTokenCommand,
-    private removeAuthTokenCommand: RemoveAuthTokenCommand,
-    private logoutCommand: LogoutCommand,
     private getMeCommand: GetMeCommand
   ) {}
 
-  loginOTP() {
-    return this.loginOTPCommand.execute();
+  loginOTP(): Observable<any> {
+    const command = new LoginOTPCommand();
+
+    return this.loginOTPCommandHandler.execute(command);
   }
 
   verifyOTP() {
-    return this.verifyOTPCommand.execute();
+    const command = new VerifyOTPCommand();
+
+    return this.verifyOTPCommandHandler.execute(command);
   }
 
   getRefreshToken() {
@@ -35,11 +48,14 @@ export class AuthenticationService {
   }
 
   removeAuthToken() {
-    return this.removeAuthTokenCommand.execute();
+    const command = new RemoveAuthTokenCommand();
+
+    return this.removeAuthTokenCommandHandler.execute(command);
   }
 
   logout() {
-    return this.logoutCommand.execute();
+    const command = new LogoutCommand();
+    return this.logoutCommandHandler.execute(command);
   }
 
   getMe() {

@@ -1,21 +1,22 @@
-import { map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserAggregate } from '@angular-ddd/domain';
-
 import { Identity } from '@angular-ddd/domain-driven-design/common';
 import { AuthenticationApiService } from '@angular-ddd/infrastructure';
 import { LocalStorageTokenService } from '@angular-ddd/persistence';
+import { LoginOTPCommand } from './login-otp.command';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginOTPCommand {
+export class LoginOTPCommandHandler {
   constructor(
     private apiService: AuthenticationApiService,
     private localStorageTokenService: LocalStorageTokenService
   ) {}
 
-  execute(): Observable<any> {
+  execute(command: LoginOTPCommand): Observable<any> {
     return this.apiService.loginOTPRequest().pipe(
       map(response => {
         const userAggregate = UserAggregate.create({
