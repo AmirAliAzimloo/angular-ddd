@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PlatformFactory } from '@angular-ddd/platform';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationProviderApiService {
-  private apiUrl = '/api/auth';
+export class AuthenticationApiService {
+  private apiUrl: string = "";
 
   constructor(
     private readonly http: HttpClient,
-  ) {}
+  ) {
+    this.apiUrl = PlatformFactory.getApiUrl();
+  }
 
   loginOTPRequest(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login-otp`, {});
+    return this.http.post(`${this.apiUrl}/login-otp`, {otp:123});
   }
 
   verifyOTPRequest(): Observable<any> {

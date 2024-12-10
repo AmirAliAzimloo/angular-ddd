@@ -31,6 +31,9 @@
       "@angular-ddd/persistence": [
         "libs/app-web/architecture/persistence/src/index.ts"
       ],
+      "@angular-ddd/platform": [
+        "libs/app-web/core/shared/platform/src/index.ts"
+      ],
       "@angular-ddd/ui-services": ["libs/app-web/ui-services/src/index.ts"],
       "@angular-ddd/utils": ["libs/app-web/common/utils/src/index.ts"]
     }

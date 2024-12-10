@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { environment } from '@angular-ddd/environments';
+import { AuthenticationApiService } from '@angular-ddd/infrastructure';
 
 @Component({
   imports: [RouterModule],
@@ -11,9 +12,12 @@ import { environment } from '@angular-ddd/environments';
 })
 export class AppComponent {
   title = 'app-web';
+
+  auth = inject(AuthenticationApiService);
   
 
   showEnv(){
+    this.auth.loginOTPRequest().subscribe();
     console.log(environment.apiUrl)
   }
 
