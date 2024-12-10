@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { environment } from '@angular-ddd/environments';
+
 @Component({
   imports: [RouterModule],
   selector: 'app-root',
@@ -9,4 +11,10 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'app-web';
+  
+
+  showEnv(){
+    console.log(environment.apiUrl)
+  }
+
 }

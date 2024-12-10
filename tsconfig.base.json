@@ -22,6 +22,9 @@
       "@angular-ddd/domain-driven-design/common": [
         "libs/app-web/common/domain-driven-design/common/src/index.ts"
       ],
+      "@angular-ddd/environments": [
+        "libs/app-web/core/shared/configs/environments/src/index.ts"
+      ],
       "@angular-ddd/infrastructure": [
         "libs/app-web/architecture/infrastructure/src/index.ts"
       ],
