@@ -9,13 +9,16 @@ import { LogoutCommandHandler } from '../../use-cases/authentication/commands/lo
 
 
 import { VerifyOTPCommand } from '../../use-cases/authentication/commands/verify/verify-otp.command';
-import { VerifyOTPCommandHandler } from '../../use-cases';
+import { VerifyOTPCommandHandler } from '../../use-cases/authentication/commands/verify/verify-otp.command-handler';
 
 import { RemoveAuthTokenCommand } from '../../use-cases/authentication/commands/remove-auth-token/remove-auth-token.command';
 import { RemoveAuthTokenCommandHandler } from '../../use-cases/authentication/commands/remove-auth-token/remove-auth-token.command-handler';
 
-import { GetRefreshTokenCommand } from '../../use-cases/authentication/queries/get-refresh-token.query';
-import { GetMeCommand } from '../../use-cases/authentication/queries/get-me.query';
+import { GetMeCommand } from '../../use-cases/authentication/queries/get-me/get-me.query'
+import { GetMeCommandHandler } from '../../use-cases/authentication/queries/get-me/get-me.query-handler'
+
+import { GetRefreshTokenCommand } from '../../use-cases/authentication/queries/get-refresh-token/get-refresh-token.query';
+import { GetRefreshTokenCommandHandler } from '../../use-cases/authentication/queries/get-refresh-token/get-refresh-token.query-handler';
 
 
 @Injectable({
@@ -27,8 +30,8 @@ export class AuthenticationService {
     private logoutCommandHandler: LogoutCommandHandler,
     private verifyOTPCommandHandler: VerifyOTPCommandHandler,
     private removeAuthTokenCommandHandler: RemoveAuthTokenCommandHandler,
-    private getRefreshTokenCommand: GetRefreshTokenCommand,
-    private getMeCommand: GetMeCommand
+    private getMeCommandHandler: GetMeCommandHandler,
+    private getRefreshTokenCommandHandler: GetRefreshTokenCommandHandler,
   ) {}
 
   loginOTP(): Observable<any> {
@@ -44,7 +47,9 @@ export class AuthenticationService {
   }
 
   getRefreshToken() {
-    return this.getRefreshTokenCommand.execute();
+    const command = new GetRefreshTokenCommand();
+
+    return this.getRefreshTokenCommandHandler.execute(command);
   }
 
   removeAuthToken() {
@@ -59,6 +64,8 @@ export class AuthenticationService {
   }
 
   getMe() {
-    return this.getMeCommand.execute();
+    const command = new GetMeCommand();
+
+    return this.getMeCommandHandler.execute(command);
   }
 }
