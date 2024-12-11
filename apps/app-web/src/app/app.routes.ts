@@ -3,20 +3,24 @@ import { OnlyAuthenticated } from '@angular-ddd/ui-services';
 
 export const appRoutes: Route[] = [
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./pages/auth/auth.routes').then((m) => m.authRoutes),
+  },
+  {
     path: 'home',
-    loadComponent: () => {
-      return import('./pages/home/home.component').then(
-        (m) => m.HomeComponent
-      );
-    },
+    loadComponent: () =>
+      import('./pages/home/home.component').then((m) => m.HomeComponent),
     canActivate: [OnlyAuthenticated],
   },
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => {
-      return import('./app.component').then((m) => m.AppComponent);
-    }
+    redirectTo: 'auth/login',
   },
-  { path: '**', redirectTo: '/' },
+  {
+    path: '**',
+    redirectTo: 'auth/login',
+  },
 ];
+
