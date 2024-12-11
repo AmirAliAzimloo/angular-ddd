@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'https://dev.autoabzar.co/api/dev',
+  apiUrl: '',
   production:true
 };
