@@ -1,1 +1,9 @@
-<p>login works!</p>
+<div>Enter Your Mobile Number</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="phone">phone</label>
+        <input id="phone" type="text" [formControl]="loginForm.controls.phone">
+    </div>
+
+    <button type="submit">submit</button>
+</form>
