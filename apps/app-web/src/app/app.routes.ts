@@ -3,10 +3,10 @@ import { OnlyAuthenticated } from '@angular-ddd/ui-services';
 
 export const appRoutes: Route[] = [
   {
-    path: 'protected',
+    path: 'home',
     loadComponent: () => {
-      return import('./pages/protected/protected.component').then(
-        (m) => m.ProtectedComponent
+      return import('./pages/home/home.component').then(
+        (m) => m.HomeComponent
       );
     },
     canActivate: [OnlyAuthenticated],
