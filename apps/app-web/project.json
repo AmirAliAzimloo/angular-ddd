@@ -45,6 +45,7 @@
             }
           ],
           "outputHashing": "all",
+          "baseHref":"/app-web",
           "fileReplacements": [
             {
               "replace": "libs/app-web/core/shared/configs/environments/src/lib/environment.ts",
@@ -56,6 +57,7 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true,
+          "baseHref":"/app-web",
           "fileReplacements": [
             {
               "replace": "libs/app-web/core/shared/configs/environments/src/lib/environment.ts",

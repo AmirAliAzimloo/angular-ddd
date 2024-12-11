@@ -1,5 +1,5 @@
-import { IDomainEvent } from './events';  
 import { IAggregateRoot } from './abstractions/aggregate-root.interface';  
+import { IDomainEvent } from './events';
 import { Identity } from './identity';
 
 const isAggregateRoot = (v: any): v is AggregateRoot<any> => {

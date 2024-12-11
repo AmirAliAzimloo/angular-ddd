@@ -1,4 +1,5 @@
-import { AggregateRoot, Identity } from '@angular-ddd/domain-driven-design/common';
+import { Identity } from '@angular-ddd/domain-driven-design/common';
+import { AggregateRoot,  } from '@angular-ddd/domain-driven-design/common';
 import { PHONE_NUMBER_PATTERN_REGEX } from '@angular-ddd/utils';
 import { UserCreatedEvent, UserUpdatedEvent, UserDeletedEvent } from './events';
 

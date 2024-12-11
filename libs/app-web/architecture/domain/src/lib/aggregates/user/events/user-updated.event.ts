@@ -1,4 +1,4 @@
-import { IDomainEvent } from "libs/app-web/common/domain-driven-design/common/src/lib/events";
+import { IDomainEvent } from "@angular-ddd/domain-driven-design/common";
 
 export class UserUpdatedEvent implements IDomainEvent {
   type = 'UserUpdated'; 
