@@ -52,13 +52,13 @@ npx nx g @nx/angular:component apps/app-web/src/app/pages/home/home
 To create a lib:
 
 ```sh
-npx nx generate @nx/angular:library libs/ui-core --buildable
+npx nx generate @nx/angular:library libs/ui-core
 ```
 
 To create a lib with tailwind config:
 
 ```sh
-npx nx generate @nx/angular:library libs/ui-core --buildable --add-tailwind
+npx nx generate @nx/angular:library libs/ui-core --add-tailwind
 ```
 
 To setup tailwind in an app:

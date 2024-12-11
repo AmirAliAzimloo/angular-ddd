@@ -1,1 +1,1 @@
-export * from './lib/ui-services/ui-services.component';
+export * from './lib/guards'

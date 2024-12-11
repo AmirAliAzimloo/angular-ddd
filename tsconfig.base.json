@@ -18,6 +18,9 @@
       "@angular-ddd/application": [
         "libs/app-web/architecture/application/src/index.ts"
       ],
+      "@angular-ddd/data-access-services": [
+        "libs/app-web/data-access-services/src/index.ts"
+      ],
       "@angular-ddd/domain": ["libs/app-web/architecture/domain/src/index.ts"],
       "@angular-ddd/domain-driven-design/common": [
         "libs/app-web/common/domain-driven-design/common/src/index.ts"
