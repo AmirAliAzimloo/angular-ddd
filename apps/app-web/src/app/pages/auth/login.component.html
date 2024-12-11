@@ -1,4 +1,7 @@
 <div>Enter Your Mobile Number</div>
+<div *ngIf="user$ | async as user">
+    <p>User changed: {{ user?.username }}</p>
+  </div>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
         <label for="phone">phone</label>

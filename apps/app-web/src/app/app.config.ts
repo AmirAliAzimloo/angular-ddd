@@ -7,8 +7,10 @@ import {
 } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 
-import { LocalStorageTokenService } from '@angular-ddd/persistence';
+import { appReducer, LocalStorageTokenService } from '@angular-ddd/persistence';
 import { ErrorInterceptor, ErrorHandlerService, HTTP_INTERCEPTOR_ERROR_HANDLER } from '@angular-ddd/common/http-interceptor';
+
+import { provideStore } from '@ngrx/store';
 
 
 export const appConfig: ApplicationConfig = {
@@ -32,5 +34,6 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptorsFromDi()
     ),
+    provideStore(appReducer)
   ],
 };
