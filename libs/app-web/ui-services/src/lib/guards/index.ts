@@ -1,1 +1,1 @@
-export * from './only-authenticated.guard';
+export * from './only-authenticated.guard'
