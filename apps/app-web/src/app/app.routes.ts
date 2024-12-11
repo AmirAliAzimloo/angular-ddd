@@ -16,7 +16,7 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     loadComponent: () => {
       return import('./app.component').then((m) => m.AppComponent);
-    },
+    }
   },
   { path: '**', redirectTo: '/' },
 ];
