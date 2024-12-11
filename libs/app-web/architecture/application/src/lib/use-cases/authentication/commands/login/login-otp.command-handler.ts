@@ -17,7 +17,8 @@ export class LoginOTPCommandHandler {
   ) {}
 
   execute(command: LoginOTPCommand): Observable<any> {
-    return this.apiService.loginOTPRequest().pipe(
+    return this.apiService.loginOTPRequest().pipe
+    (
       map(response => {
         const userAggregate = UserAggregate.create({
           id: new Identity(response.userId),
