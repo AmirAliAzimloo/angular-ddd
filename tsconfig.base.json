@@ -18,6 +18,9 @@
       "@angular-ddd/application": [
         "libs/app-web/architecture/application/src/index.ts"
       ],
+      "@angular-ddd/common/http-interceptor": [
+        "libs/app-web/common/http-interceptor/src/index.ts"
+      ],
       "@angular-ddd/data-access-services": [
         "libs/app-web/data-access-services/src/index.ts"
       ],
@@ -27,9 +30,6 @@
       ],
       "@angular-ddd/environments": [
         "libs/app-web/core/shared/configs/environments/src/index.ts"
-      ],
-      "@angular-ddd/common/http-interceptor": [
-        "libs/app-web/common/http-interceptor/src/index.ts"
       ],
       "@angular-ddd/infrastructure": [
         "libs/app-web/architecture/infrastructure/src/index.ts"
