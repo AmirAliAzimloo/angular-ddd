@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, enableProdMode, isDevMode, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import {
@@ -12,6 +12,7 @@ import { ErrorInterceptor, ErrorHandlerService, HTTP_INTERCEPTOR_ERROR_HANDLER }
 
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { APP_WEB_CONFIG, COMMON_APP_CONFIG, PlatformFactory } from '@angular-ddd/platform';
 
 
 export const appConfig: ApplicationConfig = {
@@ -19,6 +20,25 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
+    provideAppInitializer(async()=>{
+
+      await PlatformFactory.loadAppConfig();
+      
+      if(PlatformFactory.appWebConfig){
+        console.log(PlatformFactory.appWebConfig,'log_00')
+      }
+
+    }
+  
+  ),
+    {
+      provide: APP_WEB_CONFIG,
+      useFactory: () => PlatformFactory.appWebConfig, // Return the loaded appWebConfig
+    },
+    {
+      provide: COMMON_APP_CONFIG,
+      useFactory: () => PlatformFactory.commonAppConfig, // Return the loaded commonAppConfig
+    },
     {
       provide: LocalStorageTokenService
      },

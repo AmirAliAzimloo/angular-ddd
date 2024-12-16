@@ -1,0 +1,6 @@
+{
+  "name": "name",
+  "production": false,
+  "api_base": "https://api_base/api",
+  "app_default_subdomain": "app_default_subdomain"
+}

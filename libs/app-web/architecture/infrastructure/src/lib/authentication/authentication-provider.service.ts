@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PlatformFactory } from '@angular-ddd/platform';
+import { APP_WEB_CONFIG, AppWebConfig, PlatformFactory } from '@angular-ddd/platform';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,13 @@ export class AuthenticationApiService {
 
   constructor(
     private readonly http: HttpClient,
+    @Inject(APP_WEB_CONFIG) private appWebConfig: AppWebConfig
   ) {
-    this.apiUrl = PlatformFactory.getApiUrl();
+     //TODO: Implement this to read from platform factory
+    // this.apiUrl = PlatformFactory.getApiUrl();
+    if(this.appWebConfig){
+      this.apiUrl = this.appWebConfig.api_base;
+    }
   }
 
   loginOTPRequest(): Observable<any> {
