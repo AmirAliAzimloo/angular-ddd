@@ -16,6 +16,8 @@ export class LoginOTPCommandHandler {
     private localStorageTokenService: LocalStorageTokenService
   ) {}
 
+  //* This should only call and don't save;
+  
   execute(command: LoginOTPCommand): Observable<any> {
     return this.apiService.loginOTPRequest().pipe
     (

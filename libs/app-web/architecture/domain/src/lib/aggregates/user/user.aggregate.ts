@@ -44,6 +44,7 @@ export class UserAggregate extends AggregateRoot<IUserAggregateState> {
     return aggregate;
   }
 
+
   update(args: {
     firstName?: string;
     lastName?: string;
@@ -93,6 +94,16 @@ export class UserAggregate extends AggregateRoot<IUserAggregateState> {
 
   get fullName(): string {
     return `${this.state.firstName} ${this.state.lastName}`.trim();
+  }
+
+  setPhoneNumber(phone:string){
+    if(UserAggregate.isValidPhoneNumber(phone)){
+      throw new Error("")
+    }
+
+    this.state.username = phone;
+
+    return this;
   }
 
   private setFirstName(firstName: string): void {
