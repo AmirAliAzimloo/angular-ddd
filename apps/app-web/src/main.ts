@@ -6,7 +6,7 @@ import { enableProdMode, PlatformRef } from '@angular/core';
 
 PlatformFactory.platformBrowserDynamic().then(
   async (platformRef: PlatformRef) => {
-    if (PlatformFactory.appWebConfig) {
+    if (PlatformFactory.appWebConfig.production) {
       enableProdMode();
       console.log('This is production mode !');
     }

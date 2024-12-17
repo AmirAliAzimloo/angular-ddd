@@ -24,10 +24,6 @@ export const appConfig: ApplicationConfig = {
 
       await PlatformFactory.loadAppConfig();
       
-      if(PlatformFactory.appWebConfig){
-        console.log(PlatformFactory.appWebConfig,'log_00')
-      }
-
     }
   
   ),
