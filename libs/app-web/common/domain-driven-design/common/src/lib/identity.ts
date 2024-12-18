@@ -1,15 +1,19 @@
-export class Identity {
-    private readonly value: string;
-  
-    constructor(value: string) {
-      this.value = value;
+import { TIdentity } from './abstractions/identity.interface';
+
+import { IdentityValidationException } from './identity-validation.exception';
+
+import { Identifier } from './identifier';
+
+import { isUUID } from 'class-validator';
+
+import { v4 as uuid } from 'uuid';
+
+export class Identity extends Identifier<string> implements TIdentity {
+  constructor(id?: string) {
+    if (id && !isUUID(id)) {
+      throw new IdentityValidationException(id);
     }
-  
-    getValue(): string {
-      return this.value;
-    }
-  
-    equals(other: Identity): boolean {
-      return this.value === other.getValue();
-    }
+
+    super(id ? id : uuid());
   }
+}

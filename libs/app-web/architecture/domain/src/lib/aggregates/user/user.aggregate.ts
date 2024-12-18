@@ -66,13 +66,13 @@ export class UserAggregate extends AggregateRoot<IUserAggregateState> {
     }
 
     this.addDomainEvent(
-      new UserUpdatedEvent(this.getId().getValue(), this.username)
+      new UserUpdatedEvent(this.getId().toValue(), this.username)
     );
   }
 
   delete(): void {
     this.addDomainEvent(
-      new UserDeletedEvent(this.getId().getValue())
+      new UserDeletedEvent(this.getId().toValue())
     );
   }
 

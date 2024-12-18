@@ -1,5 +1,6 @@
 // way 1 =>
 
+import { environment } from "@angular-ddd/environments";
 import { Injectable, InjectionToken, PlatformRef, StaticProvider } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
@@ -103,6 +104,10 @@ export class PlatformFactory{
       production: this.appWebConfiguration.production,
       api_base: this.appWebConfiguration.api_base,
     }
+  }
+
+  static getApiUrl(){
+    return environment.apiUrl;
   }
 
 }

@@ -15,12 +15,12 @@ export class AuthenticationApiService {
     @Inject(COMMON_APP_CONFIG) private commonAppConfig: CommonAppConfig
   ) {
      //TODO: Implement this to read from platform factory
-    // this.apiUrl = PlatformFactory.getApiUrl();
-    console.log(this.appWebConfig)
-    console.log(this.commonAppConfig)
-    if(this.appWebConfig){
-      this.apiUrl = this.appWebConfig.api_base;
-    }
+    this.apiUrl = PlatformFactory.getApiUrl();
+
+    // if(this.appWebConfig){
+    //   this.apiUrl = this.appWebConfig.api_base;
+    // }
+
   }
 
   loginOTPRequest(): Observable<any> {
@@ -78,4 +78,3 @@ export class AuthenticationApiService {
    
 //   }
 // }
-
