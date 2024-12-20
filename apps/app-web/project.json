@@ -5,6 +5,13 @@
   "prefix": "app-web",
   "sourceRoot": "apps/app-web/src",
   "tags": [],
+  "i18n": {
+    "sourceLocale":"en-US",
+    "locales": {
+      "en":"apps/app-web/public/i18n/en.json",
+      "fa":"apps/app-web/public/i18n/fa.json"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
@@ -13,7 +20,7 @@
         "outputPath": "dist/apps/app-web",
         "index": "apps/app-web/src/index.html",
         "browser": "apps/app-web/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["zone.js","@angular/localize/init"],
         "tsConfig": "apps/app-web/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
