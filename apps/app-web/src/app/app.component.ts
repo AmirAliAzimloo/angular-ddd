@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'app-web';
-  private api_base: string = "";
+  private api_base: string = ""; 
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
