@@ -5,7 +5,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 
 import { appReducer, LocalStorageTokenService } from '@angular-ddd/persistence';
 import { ErrorInterceptor, ErrorHandlerService, HTTP_INTERCEPTOR_ERROR_HANDLER } from '@angular-ddd/common/http-interceptor';
@@ -13,6 +13,13 @@ import { ErrorInterceptor, ErrorHandlerService, HTTP_INTERCEPTOR_ERROR_HANDLER }
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { APP_WEB_CONFIG, COMMON_APP_CONFIG, PlatformFactory } from '@angular-ddd/platform';
+
+
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {provideTranslateService, TranslateLoader} from "@ngx-translate/core";
+
+const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
+  new TranslateHttpLoader(http, './i18n/', '.json');
 
 
 export const appConfig: ApplicationConfig = {
@@ -51,6 +58,14 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptorsFromDi()
     ),
+    provideTranslateService({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage:"fa"
+    }),
     provideStore(appReducer),
     provideStoreDevtools(
       {
